@@ -26,10 +26,10 @@ const InformationSection = () => {
     <div className="bg-white p-4 md:p-8 rounded-lg mx-2 md:mx-10 mb-8">
       <div className="flex flex-col md:flex-row items-start justify-between mb-8">
         <div className="flex flex-col items-start w-full md:w-1/2 mb-4 md:mb-0">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">
+          <h1 className="text-3xl md:text-3xl font-bold mb-4">
             Ready to dive into <span className="text-indigo-600">HABOT?</span>
           </h1>
-          <p className="text-gray-600 text-4xl md:text-xl mb-6">
+          <p className="text-gray-600 text-2xl md:text-xl mb-6">
             Signing up with HABOT opens the door to a world of new opportunities and potential for business growth. Gain access to a vibrant community of like-minded individuals, unlock valuable resources, and take the first step towards realizing your entrepreneurial dreams.
           </p>
           <button className="bg-green-500 text-white py-3 px-6 rounded-full flex items-center">
