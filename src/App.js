@@ -5,6 +5,7 @@ import InformationSection from './components/InformationSection';
 import HowItWorks from './components/HowItWorks';
 import Footer from './components/Footer';
 import Verification from './components/Verification';
+import ChatBot from './components/ChatBot';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <InformationSection/>
       <Verification/>
       <HowItWorks />
+      <ChatBot />
       <Footer />  
     </div>
   );
