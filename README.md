@@ -8,6 +8,10 @@ https://habot-web-app.vercel.app/
 ## Project Output Live Prototype : 
 https://youtu.be/tbn67RKtbkA
 
+![Habot Thumbnail](https://github.com/technovatic/Habot_WebApp/assets/123793502/24e5fe81-ee21-4169-80cf-465315ba000f)
+![snippet 1](https://github.com/technovatic/Habot_WebApp/assets/123793502/498b6073-f9f4-480a-9701-297497584673)
+
+
 ## Available Scripts
 
 In the project directory, you can run:
