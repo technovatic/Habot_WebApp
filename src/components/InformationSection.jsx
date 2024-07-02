@@ -95,7 +95,7 @@ const InformationSection = () => {
             </h2>
           </div>
           <div className="relative w-full h-36 md:h-48">
-            <LoadScript googleMapsApiKey="your_api_key_here">
+            <LoadScript googleMapsApiKey="AIzaSyB6jQDMMrqQ-lFG1MI9GirMwEJXITOWC3A">
               <GoogleMap
                 mapContainerStyle={{ width: '100%', height: '100%' }}
                 center={cities[selectedCity]}
