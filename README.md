@@ -2,6 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Project Deployed Link : 
+https://habot-web-app.vercel.app/
+
+## Project Output Live Prototype : 
+https://youtu.be/tbn67RKtbkA
+
 ## Available Scripts
 
 In the project directory, you can run:
