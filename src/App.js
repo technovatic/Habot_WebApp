@@ -10,12 +10,12 @@ import ChatBot from './components/ChatBot';
 function App() {
   return (
     <div>
+      <ChatBot />
       <Header />
       <Hero />
       <InformationSection/>
       <Verification/>
       <HowItWorks />
-      <ChatBot />
       <Footer />  
     </div>
   );
