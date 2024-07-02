@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 const cities = {
@@ -13,6 +13,8 @@ const cities = {
 const InformationSection = () => {
   const [selectedRole, setSelectedRole] = useState(null);
   const [selectedCity, setSelectedCity] = useState('Dubai'); // default city
+  const [currentCityIndex, setCurrentCityIndex] = useState(0);
+  const [isDropdown, setIsDropdown] = useState(false);
 
   const handleRoleClick = (role) => {
     setSelectedRole(role);
@@ -22,36 +24,78 @@ const InformationSection = () => {
     setSelectedCity(city);
   };
 
+  useEffect(() => {
+    const cityNames = Object.keys(cities);
+    const interval = setInterval(() => {
+      setCurrentCityIndex((prevIndex) => (prevIndex + 1) % cityNames.length);
+      setSelectedCity(cityNames[currentCityIndex]);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [currentCityIndex]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 1177 || window.innerHeight < 642) {
+        setIsDropdown(true);
+      } else {
+        setIsDropdown(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Check the initial window size
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className="bg-white p-4 md:p-8 rounded-lg mx-2 md:mx-10 mb-8">
       <div className="flex flex-col md:flex-row items-start justify-between mb-8">
-        <div className="flex flex-col items-start w-full md:w-1/2 mb-4 md:mb-0">
-          <h1 className="text-3xl md:text-3xl font-bold mb-4">
+        <div className="flex flex-col items-start w-full md:w-1/2 mb-4 md:mb-0 pr-4 md:pr-8">
+          <h1 className="text-3xl md:text-5xl font-bold mb-4">
             Ready to dive into <span className="text-indigo-600">HABOT?</span>
           </h1>
-          <p className="text-gray-600 text-2xl md:text-xl mb-6">
+          <p className="text-gray-600 text-lg md:text-xl mb-6 mt-2">
             Signing up with HABOT opens the door to a world of new opportunities and potential for business growth. Gain access to a vibrant community of like-minded individuals, unlock valuable resources, and take the first step towards realizing your entrepreneurial dreams.
           </p>
-          <button className="bg-green-500 text-white py-3 px-6 rounded-full flex items-center">
-            Sign up Today! <span className="ml-2">&rarr;</span>
+          <button className="bg-green-500 text-white py-3 px-6 rounded-full flex items-center mt-3">
+            Sign up Today! <span className="ml-2 text-1xl">&rarr;</span>
           </button>
         </div>
-        <div className="flex flex-col items-end w-full md:w-1/2 mt-4 md:mt-0 mr-2">
-          <div className="flex justify-center items-center mb-4 w-full overflow-x-auto ">
-            {Object.keys(cities).map((city) => (
-              <button
-                key={city}
-                className={`bg-gray-100 py-1 px-2 md:py-2 md:px-3 rounded-lg text-xs md:text-sm m-2 ${
-                  selectedCity === city ? 'bg-gray-300' : ''
-                }`}
-                onClick={() => handleCityClick(city)}
+        <div className="flex flex-col items-end w-full md:w-1/2 mt-6 md:mt-0" style={{ marginTop: '-20px' }}>
+          <div className="mb-4 w-full border-black">
+            {isDropdown ? (
+              <select
+                className="bg-gray-100 py-2 px-3 rounded-lg text-sm w-full mt-10"
+                value={selectedCity}
+                onChange={(e) => handleCityClick(e.target.value)}
               >
-                {city}
-              </button>
-            ))}
+                {Object.keys(cities).map((city) => (
+                  <option key={city} value={city}>
+                    {city}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <div className="flex justify-center items-center mb-4">
+                {Object.keys(cities).map((city) => (
+                  <button
+                    key={city}
+                    className={`bg-gray-100 py-1 px-2 md:py-2 md:px-3 rounded-lg text-xs md:text-sm m-2 whitespace-nowrap ${
+                      selectedCity === city ? 'bg-gray-300' : ''
+                    }`}
+                    onClick={() => handleCityClick(city)}
+                  >
+                    {city}
+                  </button>
+                ))}
+              </div>
+            )}
+            <h2 className="text-center text-lg md:text-xl font-bold mt-4">
+              {selectedCity}
+            </h2>
           </div>
           <div className="relative w-full h-36 md:h-48">
-            <LoadScript googleMapsApiKey="AIzaSyB6jQDMMrqQ-lFG1MI9GirMwEJXITOWC3A">
+            <LoadScript googleMapsApiKey="your_api_key_here">
               <GoogleMap
                 mapContainerStyle={{ width: '100%', height: '100%' }}
                 center={cities[selectedCity]}
